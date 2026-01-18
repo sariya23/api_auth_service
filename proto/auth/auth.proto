@@ -51,7 +51,6 @@ message LoginRequest {
 
 message LoginResponse {
     string token = 1;
-    string refresh_token = 2;
 }
 
 message IsAdminRequest {

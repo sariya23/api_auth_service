@@ -158,9 +158,6 @@
       "properties": {
         "token": {
           "type": "string"
-        },
-        "refreshToken": {
-          "type": "string"
         }
       }
     },
