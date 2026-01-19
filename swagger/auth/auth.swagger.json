@@ -131,6 +131,38 @@
           "Auth"
         ]
       }
+    },
+    "/v1/auth/verify-email": {
+      "post": {
+        "operationId": "Auth_VerifyEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authVerifyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authVerifyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
     }
   },
   "definitions": {
@@ -187,6 +219,17 @@
           "type": "string"
         }
       }
+    },
+    "authVerifyRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "authVerifyResponse": {
+      "type": "object"
     },
     "protobufAny": {
       "type": "object",

@@ -29,6 +29,12 @@ service Auth {
             get: "/v1/auth/ping"
         };
     }
+    rpc VerifyEmail(VerifyRequest) returns (VerifyResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/verify-email"
+          body: "*"
+        };
+    }
 }
 
 message PingResponse {
@@ -59,4 +65,12 @@ message IsAdminRequest {
 
 message IsAdminResponse {
     bool is_admin = 1;
+}
+
+message VerifyRequest {
+  string code = 1;
+}
+
+message VerifyResponse {
+
 }

@@ -347,6 +347,86 @@ func (x *IsAdminResponse) GetIsAdmin() bool {
 	return false
 }
 
+type VerifyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyRequest) Reset() {
+	*x = VerifyRequest{}
+	mi := &file_auth_auth_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyRequest) ProtoMessage() {}
+
+func (x *VerifyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyRequest.ProtoReflect.Descriptor instead.
+func (*VerifyRequest) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *VerifyRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+type VerifyResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyResponse) Reset() {
+	*x = VerifyResponse{}
+	mi := &file_auth_auth_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyResponse) ProtoMessage() {}
+
+func (x *VerifyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyResponse.ProtoReflect.Descriptor instead.
+func (*VerifyResponse) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{8}
+}
+
 var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
@@ -367,12 +447,16 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x0eIsAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\",\n" +
 	"\x0fIsAdminResponse\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xca\x02\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin\"#\n" +
+	"\rVerifyRequest\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"\x10\n" +
+	"\x0eVerifyResponse2\xa6\x03\n" +
 	"\x04Auth\x12W\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/auth/register\x12K\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/login\x12Q\n" +
 	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/auth/is_admin\x12I\n" +
-	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x12.auth.PingResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/auth/pingB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
+	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x12.auth.PingResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/auth/ping\x12Z\n" +
+	"\vVerifyEmail\x12\x13.auth.VerifyRequest\x1a\x14.auth.VerifyResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v1/auth/verify-emailB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
 
 var (
 	file_auth_auth_proto_rawDescOnce sync.Once
@@ -386,7 +470,7 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_auth_auth_proto_goTypes = []any{
 	(*PingResponse)(nil),     // 0: auth.PingResponse
 	(*RegisterRequest)(nil),  // 1: auth.RegisterRequest
@@ -395,19 +479,23 @@ var file_auth_auth_proto_goTypes = []any{
 	(*LoginResponse)(nil),    // 4: auth.LoginResponse
 	(*IsAdminRequest)(nil),   // 5: auth.IsAdminRequest
 	(*IsAdminResponse)(nil),  // 6: auth.IsAdminResponse
-	(*emptypb.Empty)(nil),    // 7: google.protobuf.Empty
+	(*VerifyRequest)(nil),    // 7: auth.VerifyRequest
+	(*VerifyResponse)(nil),   // 8: auth.VerifyResponse
+	(*emptypb.Empty)(nil),    // 9: google.protobuf.Empty
 }
 var file_auth_auth_proto_depIdxs = []int32{
 	1, // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
 	3, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
 	5, // 2: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	7, // 3: auth.Auth.Ping:input_type -> google.protobuf.Empty
-	2, // 4: auth.Auth.Register:output_type -> auth.RegisterResponse
-	4, // 5: auth.Auth.Login:output_type -> auth.LoginResponse
-	6, // 6: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	0, // 7: auth.Auth.Ping:output_type -> auth.PingResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	9, // 3: auth.Auth.Ping:input_type -> google.protobuf.Empty
+	7, // 4: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
+	2, // 5: auth.Auth.Register:output_type -> auth.RegisterResponse
+	4, // 6: auth.Auth.Login:output_type -> auth.LoginResponse
+	6, // 7: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	0, // 8: auth.Auth.Ping:output_type -> auth.PingResponse
+	8, // 9: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -424,7 +512,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
