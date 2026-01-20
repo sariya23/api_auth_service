@@ -427,6 +427,78 @@ func (*VerifyResponse) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{8}
 }
 
+type StartVerifyEmailFlowRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StartVerifyEmailFlowRequest) Reset() {
+	*x = StartVerifyEmailFlowRequest{}
+	mi := &file_auth_auth_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StartVerifyEmailFlowRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StartVerifyEmailFlowRequest) ProtoMessage() {}
+
+func (x *StartVerifyEmailFlowRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StartVerifyEmailFlowRequest.ProtoReflect.Descriptor instead.
+func (*StartVerifyEmailFlowRequest) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{9}
+}
+
+type StartVerifyEmailFlowResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StartVerifyEmailFlowResponse) Reset() {
+	*x = StartVerifyEmailFlowResponse{}
+	mi := &file_auth_auth_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StartVerifyEmailFlowResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StartVerifyEmailFlowResponse) ProtoMessage() {}
+
+func (x *StartVerifyEmailFlowResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StartVerifyEmailFlowResponse.ProtoReflect.Descriptor instead.
+func (*StartVerifyEmailFlowResponse) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{10}
+}
+
 var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
@@ -450,13 +522,16 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\bis_admin\x18\x01 \x01(\bR\aisAdmin\"#\n" +
 	"\rVerifyRequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\"\x10\n" +
-	"\x0eVerifyResponse2\xa6\x03\n" +
+	"\x0eVerifyResponse\"\x1d\n" +
+	"\x1bStartVerifyEmailFlowRequest\"\x1e\n" +
+	"\x1cStartVerifyEmailFlowResponse2\xae\x04\n" +
 	"\x04Auth\x12W\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/auth/register\x12K\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/login\x12Q\n" +
 	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/auth/is_admin\x12I\n" +
 	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x12.auth.PingResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/auth/ping\x12Z\n" +
-	"\vVerifyEmail\x12\x13.auth.VerifyRequest\x1a\x14.auth.VerifyResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v1/auth/verify-emailB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
+	"\vVerifyEmail\x12\x13.auth.VerifyRequest\x1a\x14.auth.VerifyResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v1/auth/verify-email\x12\x85\x01\n" +
+	"\x14StartVerifyEmailFlow\x12!.auth.StartVerifyEmailFlowRequest\x1a\".auth.StartVerifyEmailFlowResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1/auth/start-verify-emailB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
 
 var (
 	file_auth_auth_proto_rawDescOnce sync.Once
@@ -470,35 +545,39 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_auth_auth_proto_goTypes = []any{
-	(*PingResponse)(nil),     // 0: auth.PingResponse
-	(*RegisterRequest)(nil),  // 1: auth.RegisterRequest
-	(*RegisterResponse)(nil), // 2: auth.RegisterResponse
-	(*LoginRequest)(nil),     // 3: auth.LoginRequest
-	(*LoginResponse)(nil),    // 4: auth.LoginResponse
-	(*IsAdminRequest)(nil),   // 5: auth.IsAdminRequest
-	(*IsAdminResponse)(nil),  // 6: auth.IsAdminResponse
-	(*VerifyRequest)(nil),    // 7: auth.VerifyRequest
-	(*VerifyResponse)(nil),   // 8: auth.VerifyResponse
-	(*emptypb.Empty)(nil),    // 9: google.protobuf.Empty
+	(*PingResponse)(nil),                 // 0: auth.PingResponse
+	(*RegisterRequest)(nil),              // 1: auth.RegisterRequest
+	(*RegisterResponse)(nil),             // 2: auth.RegisterResponse
+	(*LoginRequest)(nil),                 // 3: auth.LoginRequest
+	(*LoginResponse)(nil),                // 4: auth.LoginResponse
+	(*IsAdminRequest)(nil),               // 5: auth.IsAdminRequest
+	(*IsAdminResponse)(nil),              // 6: auth.IsAdminResponse
+	(*VerifyRequest)(nil),                // 7: auth.VerifyRequest
+	(*VerifyResponse)(nil),               // 8: auth.VerifyResponse
+	(*StartVerifyEmailFlowRequest)(nil),  // 9: auth.StartVerifyEmailFlowRequest
+	(*StartVerifyEmailFlowResponse)(nil), // 10: auth.StartVerifyEmailFlowResponse
+	(*emptypb.Empty)(nil),                // 11: google.protobuf.Empty
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	1, // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
-	3, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
-	5, // 2: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	9, // 3: auth.Auth.Ping:input_type -> google.protobuf.Empty
-	7, // 4: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
-	2, // 5: auth.Auth.Register:output_type -> auth.RegisterResponse
-	4, // 6: auth.Auth.Login:output_type -> auth.LoginResponse
-	6, // 7: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	0, // 8: auth.Auth.Ping:output_type -> auth.PingResponse
-	8, // 9: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
+	3,  // 1: auth.Auth.Login:input_type -> auth.LoginRequest
+	5,  // 2: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
+	11, // 3: auth.Auth.Ping:input_type -> google.protobuf.Empty
+	7,  // 4: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
+	9,  // 5: auth.Auth.StartVerifyEmailFlow:input_type -> auth.StartVerifyEmailFlowRequest
+	2,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponse
+	4,  // 7: auth.Auth.Login:output_type -> auth.LoginResponse
+	6,  // 8: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	0,  // 9: auth.Auth.Ping:output_type -> auth.PingResponse
+	8,  // 10: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
+	10, // 11: auth.Auth.StartVerifyEmailFlow:output_type -> auth.StartVerifyEmailFlowResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_auth_auth_proto_init() }
@@ -512,7 +591,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
