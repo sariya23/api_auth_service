@@ -43,6 +43,13 @@ service Auth {
           body: "*"
         };
     }
+    // WEB
+    rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/refresh"
+          body: "*"
+        };
+    }
 }
 
 message PingResponse {
@@ -64,7 +71,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string token = 1;
+    string token = 1; // access token
 }
 
 message IsAdminRequest {
@@ -89,4 +96,12 @@ message StartVerifyEmailFlowRequest {
 
 message StartVerifyEmailFlowResponse {
 
+}
+
+message RefreshTokenRequest {
+
+}
+
+message RefreshTokenResponse {
+  string accessToken = 1;
 }

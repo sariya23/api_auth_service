@@ -217,7 +217,7 @@ func (x *LoginRequest) GetPassword() string {
 
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"` // access token
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -499,6 +499,86 @@ func (*StartVerifyEmailFlowResponse) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{10}
 }
 
+type RefreshTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokenRequest) Reset() {
+	*x = RefreshTokenRequest{}
+	mi := &file_auth_auth_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenRequest) ProtoMessage() {}
+
+func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
+func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{11}
+}
+
+type RefreshTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokenResponse) Reset() {
+	*x = RefreshTokenResponse{}
+	mi := &file_auth_auth_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenResponse) ProtoMessage() {}
+
+func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
+func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *RefreshTokenResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
 var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
@@ -524,14 +604,18 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x04code\x18\x01 \x01(\tR\x04code\"\x10\n" +
 	"\x0eVerifyResponse\"\x1d\n" +
 	"\x1bStartVerifyEmailFlowRequest\"\x1e\n" +
-	"\x1cStartVerifyEmailFlowResponse2\xae\x04\n" +
+	"\x1cStartVerifyEmailFlowResponse\"\x15\n" +
+	"\x13RefreshTokenRequest\"8\n" +
+	"\x14RefreshTokenResponse\x12 \n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\x92\x05\n" +
 	"\x04Auth\x12W\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/auth/register\x12K\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/login\x12Q\n" +
 	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/auth/is_admin\x12I\n" +
 	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x12.auth.PingResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/auth/ping\x12Z\n" +
 	"\vVerifyEmail\x12\x13.auth.VerifyRequest\x1a\x14.auth.VerifyResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v1/auth/verify-email\x12\x85\x01\n" +
-	"\x14StartVerifyEmailFlow\x12!.auth.StartVerifyEmailFlowRequest\x1a\".auth.StartVerifyEmailFlowResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1/auth/start-verify-emailB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
+	"\x14StartVerifyEmailFlow\x12!.auth.StartVerifyEmailFlowRequest\x1a\".auth.StartVerifyEmailFlowResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1/auth/start-verify-email\x12b\n" +
+	"\fRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/auth/refreshB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
 
 var (
 	file_auth_auth_proto_rawDescOnce sync.Once
@@ -545,7 +629,7 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_auth_auth_proto_goTypes = []any{
 	(*PingResponse)(nil),                 // 0: auth.PingResponse
 	(*RegisterRequest)(nil),              // 1: auth.RegisterRequest
@@ -558,23 +642,27 @@ var file_auth_auth_proto_goTypes = []any{
 	(*VerifyResponse)(nil),               // 8: auth.VerifyResponse
 	(*StartVerifyEmailFlowRequest)(nil),  // 9: auth.StartVerifyEmailFlowRequest
 	(*StartVerifyEmailFlowResponse)(nil), // 10: auth.StartVerifyEmailFlowResponse
-	(*emptypb.Empty)(nil),                // 11: google.protobuf.Empty
+	(*RefreshTokenRequest)(nil),          // 11: auth.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),         // 12: auth.RefreshTokenResponse
+	(*emptypb.Empty)(nil),                // 13: google.protobuf.Empty
 }
 var file_auth_auth_proto_depIdxs = []int32{
 	1,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
 	3,  // 1: auth.Auth.Login:input_type -> auth.LoginRequest
 	5,  // 2: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	11, // 3: auth.Auth.Ping:input_type -> google.protobuf.Empty
+	13, // 3: auth.Auth.Ping:input_type -> google.protobuf.Empty
 	7,  // 4: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
 	9,  // 5: auth.Auth.StartVerifyEmailFlow:input_type -> auth.StartVerifyEmailFlowRequest
-	2,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponse
-	4,  // 7: auth.Auth.Login:output_type -> auth.LoginResponse
-	6,  // 8: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	0,  // 9: auth.Auth.Ping:output_type -> auth.PingResponse
-	8,  // 10: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
-	10, // 11: auth.Auth.StartVerifyEmailFlow:output_type -> auth.StartVerifyEmailFlowResponse
-	6,  // [6:12] is the sub-list for method output_type
-	0,  // [0:6] is the sub-list for method input_type
+	11, // 6: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
+	2,  // 7: auth.Auth.Register:output_type -> auth.RegisterResponse
+	4,  // 8: auth.Auth.Login:output_type -> auth.LoginResponse
+	6,  // 9: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	0,  // 10: auth.Auth.Ping:output_type -> auth.PingResponse
+	8,  // 11: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
+	10, // 12: auth.Auth.StartVerifyEmailFlow:output_type -> auth.StartVerifyEmailFlowResponse
+	12, // 13: auth.Auth.RefreshToken:output_type -> auth.RefreshTokenResponse
+	7,  // [7:14] is the sub-list for method output_type
+	0,  // [0:7] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -591,7 +679,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
