@@ -50,6 +50,13 @@ service Auth {
           body: "*"
         };
     }
+    // WEB
+    rpc Logout(LogoutRequest) returns (LogoutResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/logout"
+          body: "*"
+        };
+    }
 }
 
 message PingResponse {
@@ -104,4 +111,13 @@ message RefreshTokenRequest {
 
 message RefreshTokenResponse {
   string accessToken = 1;
+}
+
+
+message LogoutRequest {
+
+}
+
+message LogoutResponse {
+
 }

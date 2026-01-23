@@ -78,6 +78,39 @@
         ]
       }
     },
+    "/v1/auth/logout": {
+      "post": {
+        "summary": "WEB",
+        "operationId": "Auth_Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authLogoutResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authLogoutRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/auth/ping": {
       "get": {
         "operationId": "Auth_Ping",
@@ -260,6 +293,12 @@
           "title": "access token"
         }
       }
+    },
+    "authLogoutRequest": {
+      "type": "object"
+    },
+    "authLogoutResponse": {
+      "type": "object"
     },
     "authPingResponse": {
       "type": "object",
