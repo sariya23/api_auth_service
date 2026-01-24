@@ -5,6 +5,7 @@ option go_package = "github.com/sariya23/api_auth_service/gen/auth;auth";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "google/type/date.proto";
 
 service Auth {
     rpc Register(RegisterRequest) returns (RegisterResponse) {
@@ -55,6 +56,12 @@ service Auth {
         option (google.api.http) = {
           post: "/v1/auth/logout"
           body: "*"
+        };
+    }
+    // WEB
+    rpc GetMe(MeRequest) returns (MeResponse) {
+        option (google.api.http) = {
+          get: "/v1/auth/me"
         };
     }
 }
@@ -120,4 +127,15 @@ message LogoutRequest {
 
 message LogoutResponse {
 
+}
+
+message MeRequest {
+
+}
+
+message MeResponse {
+  string userID = 1;
+  string email = 2;
+  bool isVerified = 3;
+  google.type.Date createdAt = 4;
 }
