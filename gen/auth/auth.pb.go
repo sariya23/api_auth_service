@@ -690,6 +690,7 @@ func (*MeRequest) Descriptor() ([]byte, []int) {
 
 type MeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *MeResponse_User       `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -722,6 +723,13 @@ func (x *MeResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MeResponse.ProtoReflect.Descriptor instead.
 func (*MeResponse) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *MeResponse) GetUser() *MeResponse_User {
+	if x != nil {
+		return x.User
+	}
+	return nil
 }
 
 type MeResponse_User struct {
@@ -831,9 +839,10 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\"\x0f\n" +
 	"\rLogoutRequest\"\x10\n" +
 	"\x0eLogoutResponse\"\v\n" +
-	"\tMeRequest\"\xb0\x01\n" +
+	"\tMeRequest\"\xdb\x01\n" +
 	"\n" +
-	"MeResponse\x1a\xa1\x01\n" +
+	"MeResponse\x12)\n" +
+	"\x04user\x18\x01 \x01(\v2\x15.auth.MeResponse.UserR\x04user\x1a\xa1\x01\n" +
 	"\x04User\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1e\n" +
@@ -889,30 +898,31 @@ var file_auth_auth_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),                // 19: google.protobuf.Empty
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	18, // 0: auth.MeResponse.User.createdAt:type_name -> google.type.Date
-	1,  // 1: auth.Auth.Register:input_type -> auth.RegisterRequest
-	3,  // 2: auth.Auth.Login:input_type -> auth.LoginRequest
-	5,  // 3: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	19, // 4: auth.Auth.Ping:input_type -> google.protobuf.Empty
-	7,  // 5: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
-	9,  // 6: auth.Auth.StartVerifyEmailFlow:input_type -> auth.StartVerifyEmailFlowRequest
-	11, // 7: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
-	13, // 8: auth.Auth.Logout:input_type -> auth.LogoutRequest
-	15, // 9: auth.Auth.GetMe:input_type -> auth.MeRequest
-	2,  // 10: auth.Auth.Register:output_type -> auth.RegisterResponse
-	4,  // 11: auth.Auth.Login:output_type -> auth.LoginResponse
-	6,  // 12: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	0,  // 13: auth.Auth.Ping:output_type -> auth.PingResponse
-	8,  // 14: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
-	10, // 15: auth.Auth.StartVerifyEmailFlow:output_type -> auth.StartVerifyEmailFlowResponse
-	12, // 16: auth.Auth.RefreshToken:output_type -> auth.RefreshTokenResponse
-	14, // 17: auth.Auth.Logout:output_type -> auth.LogoutResponse
-	16, // 18: auth.Auth.GetMe:output_type -> auth.MeResponse
-	10, // [10:19] is the sub-list for method output_type
-	1,  // [1:10] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	17, // 0: auth.MeResponse.user:type_name -> auth.MeResponse.User
+	18, // 1: auth.MeResponse.User.createdAt:type_name -> google.type.Date
+	1,  // 2: auth.Auth.Register:input_type -> auth.RegisterRequest
+	3,  // 3: auth.Auth.Login:input_type -> auth.LoginRequest
+	5,  // 4: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
+	19, // 5: auth.Auth.Ping:input_type -> google.protobuf.Empty
+	7,  // 6: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
+	9,  // 7: auth.Auth.StartVerifyEmailFlow:input_type -> auth.StartVerifyEmailFlowRequest
+	11, // 8: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
+	13, // 9: auth.Auth.Logout:input_type -> auth.LogoutRequest
+	15, // 10: auth.Auth.GetMe:input_type -> auth.MeRequest
+	2,  // 11: auth.Auth.Register:output_type -> auth.RegisterResponse
+	4,  // 12: auth.Auth.Login:output_type -> auth.LoginResponse
+	6,  // 13: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	0,  // 14: auth.Auth.Ping:output_type -> auth.PingResponse
+	8,  // 15: auth.Auth.VerifyEmail:output_type -> auth.VerifyResponse
+	10, // 16: auth.Auth.StartVerifyEmailFlow:output_type -> auth.StartVerifyEmailFlowResponse
+	12, // 17: auth.Auth.RefreshToken:output_type -> auth.RefreshTokenResponse
+	14, // 18: auth.Auth.Logout:output_type -> auth.LogoutResponse
+	16, // 19: auth.Auth.GetMe:output_type -> auth.MeResponse
+	11, // [11:20] is the sub-list for method output_type
+	2,  // [2:11] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_auth_auth_proto_init() }

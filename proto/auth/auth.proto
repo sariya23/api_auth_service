@@ -134,6 +134,7 @@ message MeRequest {
 }
 
 message MeResponse {
+  User user = 1;
   message User {
     string userID = 1;
     string email = 2;
