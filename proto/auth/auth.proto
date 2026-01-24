@@ -134,8 +134,11 @@ message MeRequest {
 }
 
 message MeResponse {
-  string userID = 1;
-  string email = 2;
-  bool isVerified = 3;
-  google.type.Date createdAt = 4;
+  message User {
+    string userID = 1;
+    string email = 2;
+    bool isVerified = 3;
+    google.type.Date createdAt = 4;
+    string username = 5;
+  }
 }

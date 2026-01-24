@@ -690,10 +690,6 @@ func (*MeRequest) Descriptor() ([]byte, []int) {
 
 type MeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	IsVerified    bool                   `protobuf:"varint,3,opt,name=isVerified,proto3" json:"isVerified,omitempty"`
-	CreatedAt     *date.Date             `protobuf:"bytes,4,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -728,32 +724,80 @@ func (*MeResponse) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *MeResponse) GetUserID() string {
+type MeResponse_User struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	IsVerified    bool                   `protobuf:"varint,3,opt,name=isVerified,proto3" json:"isVerified,omitempty"`
+	CreatedAt     *date.Date             `protobuf:"bytes,4,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	Username      string                 `protobuf:"bytes,5,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MeResponse_User) Reset() {
+	*x = MeResponse_User{}
+	mi := &file_auth_auth_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MeResponse_User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MeResponse_User) ProtoMessage() {}
+
+func (x *MeResponse_User) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_auth_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MeResponse_User.ProtoReflect.Descriptor instead.
+func (*MeResponse_User) Descriptor() ([]byte, []int) {
+	return file_auth_auth_proto_rawDescGZIP(), []int{16, 0}
+}
+
+func (x *MeResponse_User) GetUserID() string {
 	if x != nil {
 		return x.UserID
 	}
 	return ""
 }
 
-func (x *MeResponse) GetEmail() string {
+func (x *MeResponse_User) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *MeResponse) GetIsVerified() bool {
+func (x *MeResponse_User) GetIsVerified() bool {
 	if x != nil {
 		return x.IsVerified
 	}
 	return false
 }
 
-func (x *MeResponse) GetCreatedAt() *date.Date {
+func (x *MeResponse_User) GetCreatedAt() *date.Date {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return nil
+}
+
+func (x *MeResponse_User) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
 }
 
 var File_auth_auth_proto protoreflect.FileDescriptor
@@ -787,15 +831,17 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\"\x0f\n" +
 	"\rLogoutRequest\"\x10\n" +
 	"\x0eLogoutResponse\"\v\n" +
-	"\tMeRequest\"\x8b\x01\n" +
+	"\tMeRequest\"\xb0\x01\n" +
 	"\n" +
-	"MeResponse\x12\x16\n" +
+	"MeResponse\x1a\xa1\x01\n" +
+	"\x04User\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1e\n" +
 	"\n" +
 	"isVerified\x18\x03 \x01(\bR\n" +
 	"isVerified\x12/\n" +
-	"\tcreatedAt\x18\x04 \x01(\v2\x11.google.type.DateR\tcreatedAt2\xa4\x06\n" +
+	"\tcreatedAt\x18\x04 \x01(\v2\x11.google.type.DateR\tcreatedAt\x12\x1a\n" +
+	"\busername\x18\x05 \x01(\tR\busername2\xa4\x06\n" +
 	"\x04Auth\x12W\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/auth/register\x12K\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/login\x12Q\n" +
@@ -819,7 +865,7 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_auth_auth_proto_goTypes = []any{
 	(*PingResponse)(nil),                 // 0: auth.PingResponse
 	(*RegisterRequest)(nil),              // 1: auth.RegisterRequest
@@ -838,15 +884,16 @@ var file_auth_auth_proto_goTypes = []any{
 	(*LogoutResponse)(nil),               // 14: auth.LogoutResponse
 	(*MeRequest)(nil),                    // 15: auth.MeRequest
 	(*MeResponse)(nil),                   // 16: auth.MeResponse
-	(*date.Date)(nil),                    // 17: google.type.Date
-	(*emptypb.Empty)(nil),                // 18: google.protobuf.Empty
+	(*MeResponse_User)(nil),              // 17: auth.MeResponse.User
+	(*date.Date)(nil),                    // 18: google.type.Date
+	(*emptypb.Empty)(nil),                // 19: google.protobuf.Empty
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	17, // 0: auth.MeResponse.createdAt:type_name -> google.type.Date
+	18, // 0: auth.MeResponse.User.createdAt:type_name -> google.type.Date
 	1,  // 1: auth.Auth.Register:input_type -> auth.RegisterRequest
 	3,  // 2: auth.Auth.Login:input_type -> auth.LoginRequest
 	5,  // 3: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	18, // 4: auth.Auth.Ping:input_type -> google.protobuf.Empty
+	19, // 4: auth.Auth.Ping:input_type -> google.protobuf.Empty
 	7,  // 5: auth.Auth.VerifyEmail:input_type -> auth.VerifyRequest
 	9,  // 6: auth.Auth.StartVerifyEmailFlow:input_type -> auth.StartVerifyEmailFlowRequest
 	11, // 7: auth.Auth.RefreshToken:input_type -> auth.RefreshTokenRequest
@@ -879,7 +926,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
