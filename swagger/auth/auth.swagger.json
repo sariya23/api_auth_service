@@ -329,13 +329,7 @@
       }
     },
     "authLoginResponse": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string",
-          "title": "access token"
-        }
-      }
+      "type": "object"
     },
     "authLogoutRequest": {
       "type": "object"

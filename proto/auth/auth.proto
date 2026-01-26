@@ -85,7 +85,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string token = 1; // access token
+
 }
 
 message IsAdminRequest {
