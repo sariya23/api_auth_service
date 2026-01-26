@@ -530,7 +530,6 @@ func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
 
 type RefreshTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -563,13 +562,6 @@ func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
 func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *RefreshTokenResponse) GetAccessToken() string {
-	if x != nil {
-		return x.AccessToken
-	}
-	return ""
 }
 
 type LogoutRequest struct {
@@ -814,8 +806,8 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x0f\n" +
-	"\rLoginResponse\")\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x15\n" +
+	"\rLoginResponseJ\x04\b\x01\x10\x02\")\n" +
 	"\x0eIsAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\",\n" +
 	"\x0fIsAdminResponse\x12\x19\n" +
@@ -825,9 +817,8 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x0eVerifyResponse\"\x1d\n" +
 	"\x1bStartVerifyEmailFlowRequest\"\x1e\n" +
 	"\x1cStartVerifyEmailFlowResponse\"\x15\n" +
-	"\x13RefreshTokenRequest\"8\n" +
-	"\x14RefreshTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\"\x0f\n" +
+	"\x13RefreshTokenRequest\"\x1c\n" +
+	"\x14RefreshTokenResponseJ\x04\b\x01\x10\x02\"\x0f\n" +
 	"\rLogoutRequest\"\x10\n" +
 	"\x0eLogoutResponse\"\v\n" +
 	"\tMeRequest\"\xdb\x01\n" +

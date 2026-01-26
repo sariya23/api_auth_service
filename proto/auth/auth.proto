@@ -85,6 +85,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
+  reserved 1;
 
 }
 
@@ -117,7 +118,7 @@ message RefreshTokenRequest {
 }
 
 message RefreshTokenResponse {
-  string accessToken = 1;
+  reserved 1;
 }
 
 

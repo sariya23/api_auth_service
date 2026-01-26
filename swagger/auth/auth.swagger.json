@@ -357,12 +357,7 @@
       "type": "object"
     },
     "authRefreshTokenResponse": {
-      "type": "object",
-      "properties": {
-        "accessToken": {
-          "type": "string"
-        }
-      }
+      "type": "object"
     },
     "authRegisterRequest": {
       "type": "object",
