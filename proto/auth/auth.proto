@@ -80,9 +80,9 @@ service Auth {
   }
 
   // WEB
-  rpc ResetPasswordConfirmSetNew(ResetPasswordConfirmSetNewRequest) returns (ResetPasswordConfirmSetNewResponse) {
+  rpc ResetPasswordSetNew(ResetPasswordSetRequest) returns (ResetPasswordSetResponse) {
     option (google.api.http) = {
-      post: "/v1/auth/reset-password-set"
+      post: "/v1/auth/reset-password-set-new"
       body: "*"
     };
   }
@@ -183,11 +183,11 @@ message ResetPasswordConfirmResponse {
 
 }
 
-message ResetPasswordConfirmSetNewRequest {
+message ResetPasswordSetRequest {
   string password = 1;
   string token = 2; // в body
 }
 
-message ResetPasswordConfirmSetNewResponse {
+message ResetPasswordSetResponse {
 
 }

@@ -337,9 +337,9 @@ func local_request_Auth_ResetPasswordConfirm_0(ctx context.Context, marshaler ru
 	return msg, metadata, err
 }
 
-func request_Auth_ResetPasswordConfirmSetNew_0(ctx context.Context, marshaler runtime.Marshaler, client AuthClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Auth_ResetPasswordSetNew_0(ctx context.Context, marshaler runtime.Marshaler, client AuthClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ResetPasswordConfirmSetNewRequest
+		protoReq ResetPasswordSetRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -348,19 +348,19 @@ func request_Auth_ResetPasswordConfirmSetNew_0(ctx context.Context, marshaler ru
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.ResetPasswordConfirmSetNew(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ResetPasswordSetNew(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_Auth_ResetPasswordConfirmSetNew_0(ctx context.Context, marshaler runtime.Marshaler, server AuthServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Auth_ResetPasswordSetNew_0(ctx context.Context, marshaler runtime.Marshaler, server AuthServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ResetPasswordConfirmSetNewRequest
+		protoReq ResetPasswordSetRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.ResetPasswordConfirmSetNew(ctx, &protoReq)
+	msg, err := server.ResetPasswordSetNew(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -590,25 +590,25 @@ func RegisterAuthHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		}
 		forward_Auth_ResetPasswordConfirm_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Auth_ResetPasswordConfirmSetNew_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Auth_ResetPasswordSetNew_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/auth.Auth/ResetPasswordConfirmSetNew", runtime.WithHTTPPathPattern("/v1/auth/reset-password-set"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/auth.Auth/ResetPasswordSetNew", runtime.WithHTTPPathPattern("/v1/auth/reset-password-set-new"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Auth_ResetPasswordConfirmSetNew_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Auth_ResetPasswordSetNew_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Auth_ResetPasswordConfirmSetNew_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Auth_ResetPasswordSetNew_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -837,52 +837,52 @@ func RegisterAuthHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		}
 		forward_Auth_ResetPasswordConfirm_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Auth_ResetPasswordConfirmSetNew_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Auth_ResetPasswordSetNew_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/auth.Auth/ResetPasswordConfirmSetNew", runtime.WithHTTPPathPattern("/v1/auth/reset-password-set"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/auth.Auth/ResetPasswordSetNew", runtime.WithHTTPPathPattern("/v1/auth/reset-password-set-new"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Auth_ResetPasswordConfirmSetNew_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Auth_ResetPasswordSetNew_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Auth_ResetPasswordConfirmSetNew_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Auth_ResetPasswordSetNew_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_Auth_Register_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "register"}, ""))
-	pattern_Auth_Login_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "login"}, ""))
-	pattern_Auth_IsAdmin_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "is_admin"}, ""))
-	pattern_Auth_Ping_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "ping"}, ""))
-	pattern_Auth_VerifyEmail_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "verify-email"}, ""))
-	pattern_Auth_StartVerifyEmailFlow_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "start-verify-email"}, ""))
-	pattern_Auth_RefreshToken_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "refresh"}, ""))
-	pattern_Auth_Logout_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "logout"}, ""))
-	pattern_Auth_GetMe_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "me"}, ""))
-	pattern_Auth_ResetPassword_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "reset-password"}, ""))
-	pattern_Auth_ResetPasswordConfirm_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "reset-password-confirm"}, ""))
-	pattern_Auth_ResetPasswordConfirmSetNew_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "reset-password-set"}, ""))
+	pattern_Auth_Register_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "register"}, ""))
+	pattern_Auth_Login_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "login"}, ""))
+	pattern_Auth_IsAdmin_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "is_admin"}, ""))
+	pattern_Auth_Ping_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "ping"}, ""))
+	pattern_Auth_VerifyEmail_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "verify-email"}, ""))
+	pattern_Auth_StartVerifyEmailFlow_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "start-verify-email"}, ""))
+	pattern_Auth_RefreshToken_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "refresh"}, ""))
+	pattern_Auth_Logout_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "logout"}, ""))
+	pattern_Auth_GetMe_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "me"}, ""))
+	pattern_Auth_ResetPassword_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "reset-password"}, ""))
+	pattern_Auth_ResetPasswordConfirm_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "reset-password-confirm"}, ""))
+	pattern_Auth_ResetPasswordSetNew_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "reset-password-set-new"}, ""))
 )
 
 var (
-	forward_Auth_Register_0                   = runtime.ForwardResponseMessage
-	forward_Auth_Login_0                      = runtime.ForwardResponseMessage
-	forward_Auth_IsAdmin_0                    = runtime.ForwardResponseMessage
-	forward_Auth_Ping_0                       = runtime.ForwardResponseMessage
-	forward_Auth_VerifyEmail_0                = runtime.ForwardResponseMessage
-	forward_Auth_StartVerifyEmailFlow_0       = runtime.ForwardResponseMessage
-	forward_Auth_RefreshToken_0               = runtime.ForwardResponseMessage
-	forward_Auth_Logout_0                     = runtime.ForwardResponseMessage
-	forward_Auth_GetMe_0                      = runtime.ForwardResponseMessage
-	forward_Auth_ResetPassword_0              = runtime.ForwardResponseMessage
-	forward_Auth_ResetPasswordConfirm_0       = runtime.ForwardResponseMessage
-	forward_Auth_ResetPasswordConfirmSetNew_0 = runtime.ForwardResponseMessage
+	forward_Auth_Register_0             = runtime.ForwardResponseMessage
+	forward_Auth_Login_0                = runtime.ForwardResponseMessage
+	forward_Auth_IsAdmin_0              = runtime.ForwardResponseMessage
+	forward_Auth_Ping_0                 = runtime.ForwardResponseMessage
+	forward_Auth_VerifyEmail_0          = runtime.ForwardResponseMessage
+	forward_Auth_StartVerifyEmailFlow_0 = runtime.ForwardResponseMessage
+	forward_Auth_RefreshToken_0         = runtime.ForwardResponseMessage
+	forward_Auth_Logout_0               = runtime.ForwardResponseMessage
+	forward_Auth_GetMe_0                = runtime.ForwardResponseMessage
+	forward_Auth_ResetPassword_0        = runtime.ForwardResponseMessage
+	forward_Auth_ResetPasswordConfirm_0 = runtime.ForwardResponseMessage
+	forward_Auth_ResetPasswordSetNew_0  = runtime.ForwardResponseMessage
 )

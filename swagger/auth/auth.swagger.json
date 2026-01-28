@@ -286,15 +286,15 @@
         ]
       }
     },
-    "/v1/auth/reset-password-set": {
+    "/v1/auth/reset-password-set-new": {
       "post": {
         "summary": "WEB",
-        "operationId": "Auth_ResetPasswordConfirmSetNew",
+        "operationId": "Auth_ResetPasswordSetNew",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/authResetPasswordConfirmSetNewResponse"
+              "$ref": "#/definitions/authResetPasswordSetResponse"
             }
           },
           "default": {
@@ -310,7 +310,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/authResetPasswordConfirmSetNewRequest"
+              "$ref": "#/definitions/authResetPasswordSetRequest"
             }
           }
         ],
@@ -479,7 +479,18 @@
     "authResetPasswordConfirmResponse": {
       "type": "object"
     },
-    "authResetPasswordConfirmSetNewRequest": {
+    "authResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "authResetPasswordResponse": {
+      "type": "object"
+    },
+    "authResetPasswordSetRequest": {
       "type": "object",
       "properties": {
         "password": {
@@ -491,18 +502,7 @@
         }
       }
     },
-    "authResetPasswordConfirmSetNewResponse": {
-      "type": "object"
-    },
-    "authResetPasswordRequest": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        }
-      }
-    },
-    "authResetPasswordResponse": {
+    "authResetPasswordSetResponse": {
       "type": "object"
     },
     "authStartVerifyEmailFlowRequest": {
