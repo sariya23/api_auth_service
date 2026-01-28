@@ -73,16 +73,16 @@ service Auth {
   }
 
   // WEB
-  rpc ConfirmReset(ConfirmResetRequest) returns (ConfirmResetResponse) {
+  rpc ResetPasswordConfirm(ResetPasswordConfirmRequest) returns (ResetPasswordConfirmResponse) {
     option (google.api.http) = {
-      get: "/v1/auth/confirm-password"
+      get: "/v1/auth/reset-password-confirm"
     };
   }
 
   // WEB
-  rpc SetNewPassword(SetNewPasswordRequest) returns (SetNewPasswordResponse) {
+  rpc ResetPasswordConfirmSetNew(ResetPasswordConfirmSetNewRequest) returns (ResetPasswordConfirmSetNewResponse) {
     option (google.api.http) = {
-      post: "/v1/auth/set-reset-password"
+      post: "/v1/auth/reset-password-set"
       body: "*"
     };
   }
@@ -175,19 +175,19 @@ message ResetPasswordResponse {
 
 }
 
-message ConfirmResetRequest {
+message ResetPasswordConfirmRequest {
   string token = 1; // query-parameter
 }
 
-message ConfirmResetResponse {
+message ResetPasswordConfirmResponse {
 
 }
 
-message SetNewPasswordRequest {
+message ResetPasswordConfirmSetNewRequest {
   string password = 1;
   string token = 2; // в body
 }
 
-message SetNewPasswordResponse {
+message ResetPasswordConfirmSetNewResponse {
 
 }
