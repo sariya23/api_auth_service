@@ -1090,7 +1090,7 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x17ResetPasswordSetRequest\x12\x1a\n" +
 	"\bpassword\x18\x01 \x01(\tR\bpassword\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"\x1a\n" +
-	"\x18ResetPasswordSetResponse2\x9e\t\n" +
+	"\x18ResetPasswordSetResponse2\xa1\t\n" +
 	"\x04Auth\x12W\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/auth/register\x12K\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/login\x12Q\n" +
@@ -1101,8 +1101,8 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\fRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/auth/refresh\x12O\n" +
 	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/auth/logout\x12?\n" +
 	"\x05GetMe\x12\x0f.auth.MeRequest\x1a\x10.auth.MeResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\v/v1/auth/me\x12l\n" +
-	"\rResetPassword\x12\x1a.auth.ResetPasswordRequest\x1a\x1b.auth.ResetPasswordResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v1/auth/reset-password\x12\x86\x01\n" +
-	"\x14ResetPasswordConfirm\x12!.auth.ResetPasswordConfirmRequest\x1a\".auth.ResetPasswordConfirmResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v1/auth/reset-password-confirm\x12\x80\x01\n" +
+	"\rResetPassword\x12\x1a.auth.ResetPasswordRequest\x1a\x1b.auth.ResetPasswordResponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v1/auth/reset-password\x12\x89\x01\n" +
+	"\x14ResetPasswordConfirm\x12!.auth.ResetPasswordConfirmRequest\x1a\".auth.ResetPasswordConfirmResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v1/auth/reset-password-confirm\x12\x80\x01\n" +
 	"\x13ResetPasswordSetNew\x12\x1d.auth.ResetPasswordSetRequest\x1a\x1e.auth.ResetPasswordSetResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v1/auth/reset-password-set-newB4Z2github.com/sariya23/api_auth_service/gen/auth;authb\x06proto3"
 
 var (

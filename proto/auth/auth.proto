@@ -75,7 +75,8 @@ service Auth {
   // WEB
   rpc ResetPasswordConfirm(ResetPasswordConfirmRequest) returns (ResetPasswordConfirmResponse) {
     option (google.api.http) = {
-      get: "/v1/auth/reset-password-confirm"
+      post: "/v1/auth/reset-password-confirm"
+      body: "*"
     };
   }
 

@@ -255,7 +255,7 @@
       }
     },
     "/v1/auth/reset-password-confirm": {
-      "get": {
+      "post": {
         "summary": "WEB",
         "operationId": "Auth_ResetPasswordConfirm",
         "responses": {
@@ -274,11 +274,12 @@
         },
         "parameters": [
           {
-            "name": "token",
-            "description": "query-parameter",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authResetPasswordConfirmRequest"
+            }
           }
         ],
         "tags": [
@@ -473,6 +474,15 @@
       "properties": {
         "userId": {
           "type": "string"
+        }
+      }
+    },
+    "authResetPasswordConfirmRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "title": "query-parameter"
         }
       }
     },
