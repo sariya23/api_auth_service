@@ -73,9 +73,9 @@ service Auth {
   }
 
   // WEB
-  rpc NewPassword(NewPasswordRequest) returns (NewPasswordResponse) {
+  rpc ConfirmReset(ConfirmResetRequest) returns (ConfirmResetResponse) {
     option (google.api.http) = {
-      get: "/v1/auth/new-password"
+      get: "/v1/auth/confirm-password"
     };
   }
 
@@ -175,11 +175,11 @@ message ResetPasswordResponse {
 
 }
 
-message NewPasswordRequest {
+message ConfirmResetRequest {
   string token = 1; // query-parameter
 }
 
-message NewPasswordResponse {
+message ConfirmResetResponse {
 
 }
 

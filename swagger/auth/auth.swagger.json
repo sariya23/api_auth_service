@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/v1/auth/confirm-password": {
+      "get": {
+        "summary": "WEB",
+        "operationId": "Auth_ConfirmReset",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authConfirmResetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "description": "query-parameter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/auth/is_admin": {
       "get": {
         "operationId": "Auth_IsAdmin",
@@ -129,38 +161,6 @@
             }
           }
         },
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
-    "/v1/auth/new-password": {
-      "get": {
-        "summary": "WEB",
-        "operationId": "Auth_NewPassword",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/authNewPasswordResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "token",
-            "description": "query-parameter",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "Auth"
         ]
@@ -407,6 +407,9 @@
         }
       }
     },
+    "authConfirmResetResponse": {
+      "type": "object"
+    },
     "authIsAdminResponse": {
       "type": "object",
       "properties": {
@@ -442,9 +445,6 @@
           "$ref": "#/definitions/MeResponseUser"
         }
       }
-    },
-    "authNewPasswordResponse": {
-      "type": "object"
     },
     "authPingResponse": {
       "type": "object",
