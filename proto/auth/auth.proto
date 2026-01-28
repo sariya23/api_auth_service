@@ -8,80 +8,102 @@ import "google/protobuf/empty.proto";
 import "google/type/date.proto";
 
 service Auth {
-    rpc Register(RegisterRequest) returns (RegisterResponse) {
-        option (google.api.http) = {
-            post: "/v1/auth/register"
-            body: "*"
-        };
-    }
-    rpc Login(LoginRequest) returns (LoginResponse) {
-        option (google.api.http) = {
-            post: "/v1/auth/login"
-            body: "*"
-        };
+  rpc Register(RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/register"
+      body: "*"
     };
-    rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse) {
-        option (google.api.http) = {
-            get: "/v1/auth/is_admin"
-        };
-    }
-    rpc Ping(google.protobuf.Empty) returns (PingResponse) {
-        option (google.api.http) = {
-            get: "/v1/auth/ping"
-        };
-    }
-    // WEB
-    rpc VerifyEmail(VerifyRequest) returns (VerifyResponse) {
-        option (google.api.http) = {
-          post: "/v1/auth/verify-email"
-          body: "*"
-        };
-    }
-    // WEB
-    rpc StartVerifyEmailFlow(StartVerifyEmailFlowRequest) returns (StartVerifyEmailFlowResponse) {
-        option (google.api.http) = {
-          post: "/v1/auth/start-verify-email"
-          body: "*"
-        };
-    }
-    // WEB
-    rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
-        option (google.api.http) = {
-          post: "/v1/auth/refresh"
-          body: "*"
-        };
-    }
-    // WEB
-    rpc Logout(LogoutRequest) returns (LogoutResponse) {
-        option (google.api.http) = {
-          post: "/v1/auth/logout"
-          body: "*"
-        };
-    }
-    // WEB
-    rpc GetMe(MeRequest) returns (MeResponse) {
-        option (google.api.http) = {
-          get: "/v1/auth/me"
-        };
-    }
+  }
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/login"
+      body: "*"
+    };
+  };
+  rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse) {
+    option (google.api.http) = {
+      get: "/v1/auth/is_admin"
+    };
+  }
+  rpc Ping(google.protobuf.Empty) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "/v1/auth/ping"
+    };
+  }
+  // WEB
+  rpc VerifyEmail(VerifyRequest) returns (VerifyResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/verify-email"
+      body: "*"
+    };
+  }
+  // WEB
+  rpc StartVerifyEmailFlow(StartVerifyEmailFlowRequest) returns (StartVerifyEmailFlowResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/start-verify-email"
+      body: "*"
+    };
+  }
+  // WEB
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/refresh"
+      body: "*"
+    };
+  }
+  // WEB
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/logout"
+      body: "*"
+    };
+  }
+  // WEB
+  rpc GetMe(MeRequest) returns (MeResponse) {
+    option (google.api.http) = {
+      get: "/v1/auth/me"
+    };
+  }
+  // WEB
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/reset-password"
+      body: "*"
+    };
+  }
+
+  // WEB
+  rpc NewPassword(NewPasswordRequest) returns (NewPasswordResponse) {
+    option (google.api.http) = {
+      get: "/v1/auth/new-password"
+    };
+  }
+
+  // WEB
+  rpc SetNewPassword(SetNewPasswordRequest) returns (SetNewPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/set-reset-password"
+      body: "*"
+    };
+  }
 }
 
 message PingResponse {
-    string response = 1;
+  string response = 1;
 }
 
 message RegisterRequest {
-    string email = 1;
-    string password = 2;
+  string email = 1;
+  string password = 2;
 }
 
 message RegisterResponse {
-    string user_id = 1;
+  string user_id = 1;
 }
 
 message LoginRequest {
-    string email = 1;
-    string password = 2;
+  string email = 1;
+  string password = 2;
 }
 
 message LoginResponse {
@@ -94,7 +116,7 @@ message IsAdminRequest {
 }
 
 message IsAdminResponse {
-    bool is_admin = 1;
+  bool is_admin = 1;
 }
 
 message VerifyRequest {
@@ -143,4 +165,29 @@ message MeResponse {
     google.type.Date createdAt = 4;
     string username = 5;
   }
+}
+
+message ResetPasswordRequest {
+  string email = 1;
+}
+
+message ResetPasswordResponse {
+
+}
+
+message NewPasswordRequest {
+  string token = 1; // query-parameter
+}
+
+message NewPasswordResponse {
+
+}
+
+message SetNewPasswordRequest {
+  string password = 1;
+  string token = 2; // в body
+}
+
+message SetNewPasswordResponse {
+
 }

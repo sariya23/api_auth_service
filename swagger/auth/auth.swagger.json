@@ -134,6 +134,38 @@
         ]
       }
     },
+    "/v1/auth/new-password": {
+      "get": {
+        "summary": "WEB",
+        "operationId": "Auth_NewPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authNewPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "description": "query-parameter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/auth/ping": {
       "get": {
         "operationId": "Auth_Ping",
@@ -213,6 +245,72 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/authRegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/reset-password": {
+      "post": {
+        "summary": "WEB",
+        "operationId": "Auth_ResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authResetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/set-reset-password": {
+      "post": {
+        "summary": "WEB",
+        "operationId": "Auth_SetNewPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authSetNewPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authSetNewPasswordRequest"
             }
           }
         ],
@@ -345,6 +443,9 @@
         }
       }
     },
+    "authNewPasswordResponse": {
+      "type": "object"
+    },
     "authPingResponse": {
       "type": "object",
       "properties": {
@@ -377,6 +478,32 @@
           "type": "string"
         }
       }
+    },
+    "authResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "authResetPasswordResponse": {
+      "type": "object"
+    },
+    "authSetNewPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string",
+          "title": "в body"
+        }
+      }
+    },
+    "authSetNewPasswordResponse": {
+      "type": "object"
     },
     "authStartVerifyEmailFlowRequest": {
       "type": "object"

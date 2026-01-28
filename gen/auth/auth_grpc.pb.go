@@ -29,6 +29,9 @@ const (
 	Auth_RefreshToken_FullMethodName         = "/auth.Auth/RefreshToken"
 	Auth_Logout_FullMethodName               = "/auth.Auth/Logout"
 	Auth_GetMe_FullMethodName                = "/auth.Auth/GetMe"
+	Auth_ResetPassword_FullMethodName        = "/auth.Auth/ResetPassword"
+	Auth_NewPassword_FullMethodName          = "/auth.Auth/NewPassword"
+	Auth_SetNewPassword_FullMethodName       = "/auth.Auth/SetNewPassword"
 )
 
 // AuthClient is the client API for Auth service.
@@ -49,6 +52,12 @@ type AuthClient interface {
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	// WEB
 	GetMe(ctx context.Context, in *MeRequest, opts ...grpc.CallOption) (*MeResponse, error)
+	// WEB
+	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error)
+	// WEB
+	NewPassword(ctx context.Context, in *NewPasswordRequest, opts ...grpc.CallOption) (*NewPasswordResponse, error)
+	// WEB
+	SetNewPassword(ctx context.Context, in *SetNewPasswordRequest, opts ...grpc.CallOption) (*SetNewPasswordResponse, error)
 }
 
 type authClient struct {
@@ -149,6 +158,36 @@ func (c *authClient) GetMe(ctx context.Context, in *MeRequest, opts ...grpc.Call
 	return out, nil
 }
 
+func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*ResetPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetPasswordResponse)
+	err := c.cc.Invoke(ctx, Auth_ResetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) NewPassword(ctx context.Context, in *NewPasswordRequest, opts ...grpc.CallOption) (*NewPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NewPasswordResponse)
+	err := c.cc.Invoke(ctx, Auth_NewPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) SetNewPassword(ctx context.Context, in *SetNewPasswordRequest, opts ...grpc.CallOption) (*SetNewPasswordResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetNewPasswordResponse)
+	err := c.cc.Invoke(ctx, Auth_SetNewPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -167,6 +206,12 @@ type AuthServer interface {
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	// WEB
 	GetMe(context.Context, *MeRequest) (*MeResponse, error)
+	// WEB
+	ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error)
+	// WEB
+	NewPassword(context.Context, *NewPasswordRequest) (*NewPasswordResponse, error)
+	// WEB
+	SetNewPassword(context.Context, *SetNewPasswordRequest) (*SetNewPasswordResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -203,6 +248,15 @@ func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutR
 }
 func (UnimplementedAuthServer) GetMe(context.Context, *MeRequest) (*MeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMe not implemented")
+}
+func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetPasswordRequest) (*ResetPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedAuthServer) NewPassword(context.Context, *NewPasswordRequest) (*NewPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NewPassword not implemented")
+}
+func (UnimplementedAuthServer) SetNewPassword(context.Context, *SetNewPasswordRequest) (*SetNewPasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetNewPassword not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -387,6 +441,60 @@ func _Auth_GetMe_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ResetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ResetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ResetPassword(ctx, req.(*ResetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_NewPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).NewPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_NewPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).NewPassword(ctx, req.(*NewPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_SetNewPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetNewPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).SetNewPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_SetNewPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).SetNewPassword(ctx, req.(*SetNewPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -429,6 +537,18 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMe",
 			Handler:    _Auth_GetMe_Handler,
+		},
+		{
+			MethodName: "ResetPassword",
+			Handler:    _Auth_ResetPassword_Handler,
+		},
+		{
+			MethodName: "NewPassword",
+			Handler:    _Auth_NewPassword_Handler,
+		},
+		{
+			MethodName: "SetNewPassword",
+			Handler:    _Auth_SetNewPassword_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
