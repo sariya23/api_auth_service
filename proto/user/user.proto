@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package user;
+option go_package = "github.com/sariya23/api_auth_service/gen/user;user";
+
+import "google/api/annotations.proto";
+import "google/type/date.proto";
+
+service User {
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/profile/{user_id}"
+    };
+  }
+}
+
+message GetUserProfileRequest {
+  string user_id = 1;
+}
+
+message GetUserProfileResponse {
+  UserProfile user_profile = 1;
+  message UserProfile {
+    string user_id = 1;
+    string username = 2;
+    google.type.Date created_at = 3;
+  }
+}
