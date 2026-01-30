@@ -166,6 +166,10 @@
         },
         "createdAt": {
           "$ref": "#/definitions/typeDate"
+        },
+        "userAvatar": {
+          "type": "string",
+          "format": "byte"
         }
       }
     }
