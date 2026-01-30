@@ -192,13 +192,13 @@ func (x *GetMeProfileResponse) GetUserProfile() *GetMeProfileResponse_UserProfil
 }
 
 type GetUserProfileResponse_UserProfile struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	CreatedAt     *date.Date             `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UserAvatar    []byte                 `protobuf:"bytes,5,opt,name=user_avatar,json=userAvatar,proto3" json:"user_avatar,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	UserId         string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Username       string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	CreatedAt      *date.Date             `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	ImageAvatarUrl string                 `protobuf:"bytes,5,opt,name=image_avatar_url,json=imageAvatarUrl,proto3" json:"image_avatar_url,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetUserProfileResponse_UserProfile) Reset() {
@@ -252,11 +252,11 @@ func (x *GetUserProfileResponse_UserProfile) GetCreatedAt() *date.Date {
 	return nil
 }
 
-func (x *GetUserProfileResponse_UserProfile) GetUserAvatar() []byte {
+func (x *GetUserProfileResponse_UserProfile) GetImageAvatarUrl() string {
 	if x != nil {
-		return x.UserAvatar
+		return x.ImageAvatarUrl
 	}
-	return nil
+	return ""
 }
 
 type GetMeProfileResponse_UserProfile struct {
@@ -333,16 +333,15 @@ const file_user_user_proto_rawDesc = "" +
 	"\n" +
 	"\x0fuser/user.proto\x12\x04user\x1a\x1cgoogle/api/annotations.proto\x1a\x16google/type/date.proto\"0\n" +
 	"\x15GetUserProfileRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xfd\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x86\x02\n" +
 	"\x16GetUserProfileResponse\x12K\n" +
-	"\fuser_profile\x18\x01 \x01(\v2(.user.GetUserProfileResponse.UserProfileR\vuserProfile\x1a\x95\x01\n" +
+	"\fuser_profile\x18\x01 \x01(\v2(.user.GetUserProfileResponse.UserProfileR\vuserProfile\x1a\x9e\x01\n" +
 	"\vUserProfile\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x120\n" +
 	"\n" +
-	"created_at\x18\x03 \x01(\v2\x11.google.type.DateR\tcreatedAt\x12\x1f\n" +
-	"\vuser_avatar\x18\x05 \x01(\fR\n" +
-	"userAvatar\"\x15\n" +
+	"created_at\x18\x03 \x01(\v2\x11.google.type.DateR\tcreatedAt\x12(\n" +
+	"\x10image_avatar_url\x18\x05 \x01(\tR\x0eimageAvatarUrl\"\x15\n" +
 	"\x13GetMeProfileRequest\"\xee\x01\n" +
 	"\x14GetMeProfileResponse\x12I\n" +
 	"\fuser_profile\x18\x01 \x01(\v2&.user.GetMeProfileResponse.UserProfileR\vuserProfile\x1a\x8a\x01\n" +

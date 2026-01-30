@@ -32,7 +32,7 @@ message GetUserProfileResponse {
     string user_id = 1;
     string username = 2;
     google.type.Date created_at = 3;
-    bytes user_avatar = 5;
+    string image_avatar_url = 5;
   }
 }
 
