@@ -7,9 +7,17 @@ import "google/api/annotations.proto";
 import "google/type/date.proto";
 
 service User {
+  // WEB
   rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse) {
     option (google.api.http) = {
       get: "/v1/user/profile/{user_id}"
+    };
+  }
+
+  // WEB
+  rpc GetMeProfile(GetMeProfileRequest) returns (GetMeProfileResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/profile/me"
     };
   }
 }
@@ -24,5 +32,19 @@ message GetUserProfileResponse {
     string user_id = 1;
     string username = 2;
     google.type.Date created_at = 3;
+  }
+}
+
+message GetMeProfileRequest {
+
+}
+
+message GetMeProfileResponse {
+  UserProfile user_profile = 1;
+  message UserProfile {
+    string user_id = 1;
+    string username = 2;
+    google.type.Date created_at = 3;
+    string email = 4;
   }
 }
