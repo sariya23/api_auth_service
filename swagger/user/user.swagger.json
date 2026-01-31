@@ -144,6 +144,9 @@
         },
         "email": {
           "type": "string"
+        },
+        "imageAvatarUrl": {
+          "type": "string"
         }
       }
     },

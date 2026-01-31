@@ -47,5 +47,6 @@ message GetMeProfileResponse {
     string username = 2;
     google.type.Date created_at = 3;
     string email = 4;
+    string image_avatar_url = 5;
   }
 }
