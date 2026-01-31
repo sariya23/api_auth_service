@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_GetUserProfile_FullMethodName = "/user.User/GetUserProfile"
-	User_GetMeProfile_FullMethodName   = "/user.User/GetMeProfile"
+	User_GetUserProfile_FullMethodName  = "/user.User/GetUserProfile"
+	User_GetMeProfile_FullMethodName    = "/user.User/GetMeProfile"
+	User_UpdateMeProfile_FullMethodName = "/user.User/UpdateMeProfile"
 )
 
 // UserClient is the client API for User service.
@@ -31,6 +32,8 @@ type UserClient interface {
 	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
 	// WEB
 	GetMeProfile(ctx context.Context, in *GetMeProfileRequest, opts ...grpc.CallOption) (*GetMeProfileResponse, error)
+	// WEB
+	UpdateMeProfile(ctx context.Context, in *UpdateMeProfileRequest, opts ...grpc.CallOption) (*UpdateMeProfileResponse, error)
 }
 
 type userClient struct {
@@ -61,6 +64,16 @@ func (c *userClient) GetMeProfile(ctx context.Context, in *GetMeProfileRequest, 
 	return out, nil
 }
 
+func (c *userClient) UpdateMeProfile(ctx context.Context, in *UpdateMeProfileRequest, opts ...grpc.CallOption) (*UpdateMeProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateMeProfileResponse)
+	err := c.cc.Invoke(ctx, User_UpdateMeProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -69,6 +82,8 @@ type UserServer interface {
 	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
 	// WEB
 	GetMeProfile(context.Context, *GetMeProfileRequest) (*GetMeProfileResponse, error)
+	// WEB
+	UpdateMeProfile(context.Context, *UpdateMeProfileRequest) (*UpdateMeProfileResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -84,6 +99,9 @@ func (UnimplementedUserServer) GetUserProfile(context.Context, *GetUserProfileRe
 }
 func (UnimplementedUserServer) GetMeProfile(context.Context, *GetMeProfileRequest) (*GetMeProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMeProfile not implemented")
+}
+func (UnimplementedUserServer) UpdateMeProfile(context.Context, *UpdateMeProfileRequest) (*UpdateMeProfileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateMeProfile not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -142,6 +160,24 @@ func _User_GetMeProfile_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_UpdateMeProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMeProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UpdateMeProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_UpdateMeProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UpdateMeProfile(ctx, req.(*UpdateMeProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +192,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMeProfile",
 			Handler:    _User_GetMeProfile_Handler,
+		},
+		{
+			MethodName: "UpdateMeProfile",
+			Handler:    _User_UpdateMeProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

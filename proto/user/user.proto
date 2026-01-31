@@ -20,6 +20,14 @@ service User {
       get: "/v1/user/profile/me"
     };
   }
+
+  // WEB
+  rpc UpdateMeProfile(UpdateMeProfileRequest) returns (UpdateMeProfileResponse) {
+    option (google.api.http) = {
+      put: "/v1/user/profile/me/update"
+      body: "*"
+    };
+  }
 }
 
 message GetUserProfileRequest {
@@ -49,4 +57,13 @@ message GetMeProfileResponse {
     string email = 4;
     string image_avatar_url = 5;
   }
+}
+
+message UpdateMeProfileRequest {
+  string username = 1;
+  bytes avatar = 2;
+}
+
+message UpdateMeProfileResponse {
+
 }

@@ -39,6 +39,39 @@
         ]
       }
     },
+    "/v1/user/profile/me/update": {
+      "put": {
+        "summary": "WEB",
+        "operationId": "User_UpdateMeProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userUpdateMeProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userUpdateMeProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "User"
+        ]
+      }
+    },
     "/v1/user/profile/{userId}": {
       "get": {
         "summary": "WEB",
@@ -174,6 +207,21 @@
           "type": "string"
         }
       }
+    },
+    "userUpdateMeProfileRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "userUpdateMeProfileResponse": {
+      "type": "object"
     }
   }
 }
